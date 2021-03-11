@@ -34,6 +34,10 @@ const actions = {
 	addPost: async (post) => {
 		return await axios.post(`${baseURL}/addAPost`, { post }, resetHead());
 	},
+	addComment: async (comment) => {
+		console.log(comment);
+		return await axios.post(`${baseURL}/addComment`, { comment }, resetHead());
+	},
 	logIn: async (data) => {
 		localStorage.setItem('googleTokenId', data.tokenId);
 

@@ -4,6 +4,29 @@ const Post = require('../models/Post');
 const User = require('../models/User');
 const axios = require('axios');
 const jwt = require('jsonwebtoken');
+const multer = require('multer');
+const { v4: uuidv4 } = require('uuid');
+
+let path = require('path');
+
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, 'images');
+	},
+	filename: function (req, file, cb) {
+		cb(null, uuidv4() + '-' + Date.now() + path.extname(file.originalname));
+	},
+});
+const fileFilter = (req, file, cb) => {
+	const allowedFileTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+	if (allowedFileTypes.includes(file.mimetype)) {
+		cb(null, true);
+	} else {
+		cb(null, false);
+	}
+};
+
+let upload = multer({ storage, fileFilter });
 
 router.get(`/user`, verifyToken, async (req, res, next) => {
 	//GETTING OUR USER
@@ -39,13 +62,31 @@ router.post(`/addAPost`, verifyToken, async (req, res, next) => {
 			res.status(403).json(err);
 		} else {
 			console.log(req.body);
-			let body = req.body;
+			let body = req.body.post;
 			body.userId = authData.user._id;
 			body.description = body.post;
 			body.message = body.post;
+			body.photo = body.img;
 
 			let post = await Post.create(body);
 			res.status(200).json(post);
+		}
+	});
+});
+
+router.post(`/addComment`, verifyToken, async (req, res, next) => {
+	jwt.verify(req.token, 'secretkey', async (err, authData) => {
+		if (err) {
+			res.status(403).json(err);
+		} else {
+			console.log('>>>>>>>>>>>>', req.body.comment.postId);
+			let id = req.body.comment.postId;
+			let post = await Post.updateOne(
+				{ _id: id },
+				{ $push: { comments: req.body.comment.comment } }
+			);
+			let allPosts = await Post.find({});
+			res.status(200).json(allPosts.reverse());
 		}
 	});
 });
