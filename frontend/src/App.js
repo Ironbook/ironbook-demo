@@ -1,29 +1,27 @@
-import { useEffect, useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Home from './components/Home';
-import AddPost from './components/AddPost';
-import AllPosts from './components/AllPosts';
-import Auth from './components/Auth';
-import Profile from './components/Profile';
-import SearchBar from './components/SearchBar';
-import actions from './api';
-import { Switch, Route, Link, useHistory } from 'react-router-dom';
-import TheContext from './TheContext';
+import { useEffect, useState } from 'react'
+import Home from './components/Home'
+import AddPost from './components/AddPost'
+import AllPosts from './components/AllPosts'
+import Auth from './components/Auth'
+import Profile from './components/Profile'
+import SearchBar from './components/SearchBar'
+import actions from './api'
+import { Switch, Route, Link, useHistory } from 'react-router-dom'
+import TheContext from './TheContext'
 
 function App() {
-	const [user, setUser] = useState({});
+	const [user, setUser] = useState({})
 
 	useEffect(() => {
 		actions
 			.getUser()
 			.then((res) => {
-				setUser(res.data);
+				setUser(res.data)
 			})
-			.catch(console.error);
-	}, []);
+			.catch(console.error)
+	}, [])
 
-	const history = useHistory();
+	const history = useHistory()
 
 	return (
 		<TheContext.Provider value={{ user, setUser, history }}>
@@ -55,7 +53,7 @@ function App() {
 				</Switch>
 			</div>
 		</TheContext.Provider>
-	);
+	)
 }
 
-export default App;
+export default App
