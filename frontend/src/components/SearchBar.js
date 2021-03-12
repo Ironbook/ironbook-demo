@@ -18,6 +18,7 @@ import green from '@material-ui/core/colors/blue';
 import logo from '../images/logo.svg';
 import { Link } from 'react-router-dom';
 import PostAddIcon from '@material-ui/icons/PostAdd';
+import auth from './Auth';
 
 const theme = createMuiTheme({
 	palette: {
@@ -125,8 +126,16 @@ export default function PrimarySearchAppBar() {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<Link to='./profile' style={{ color: '#1F2433', textDecoration: 'none' }}>
+			<Link style={{ color: '#1F2433', textDecoration: 'none' }} to='./profile'>
 				<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			</Link>
+			<Link style={{ color: '#1F2433', textDecoration: 'none' }} to='./auth'>
+				<MenuItem
+					style={{ color: '#1F2433', textDecoration: 'none' }}
+					onClick={handleMenuClose}
+				>
+					Sign in
+				</MenuItem>
 			</Link>
 			<MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
 		</Menu>
@@ -190,7 +199,6 @@ export default function PrimarySearchAppBar() {
 				style={{ backgroundColor: 'white', color: 'black' }}
 			>
 				<Toolbar>
-				
 					<Typography
 						style={{ color: '#7F8390' }}
 						className={classes.title}
