@@ -10,6 +10,7 @@ import SearchBar from './components/SearchBar';
 import actions from './api';
 import { Switch, Route, Link, useHistory } from 'react-router-dom';
 import TheContext from './TheContext';
+import Background from './images/NewBackground.svg';
 
 function App() {
 	const [user, setUser] = useState({});
@@ -27,7 +28,13 @@ function App() {
 
 	return (
 		<TheContext.Provider value={{ user, setUser, history }}>
-			<div className='App'>
+			<div
+				className='App'
+				style={{
+					backgroundImage: `url(${Background})`,
+					backgroundAttachment: 'fixed',
+				}}
+			>
 				<SearchBar />
 
 				<Switch>

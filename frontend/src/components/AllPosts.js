@@ -48,9 +48,11 @@ function AllPosts(props) {
 								</form>
 							</div>
 						</div>
-						{eachpost.comments.map((comment) => {
-							return <li>{comment}</li>;
-						})}
+						<div className='commentWrap'>
+							{eachpost.comments.map((comment) => {
+								return <li>{comment}</li>;
+							})}
+						</div>
 					</div>
 				</li>
 			);
