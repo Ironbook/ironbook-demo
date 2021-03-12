@@ -25,7 +25,13 @@ function App() {
 
 	return (
 		<TheContext.Provider value={{ user, setUser, history }}>
-			<div className='App'>
+			<div
+				className='App'
+				style={{
+					backgroundImage: `url(${Background})`,
+					backgroundAttachment: 'fixed',
+				}}
+			>
 				<SearchBar />
 
 				<Switch>

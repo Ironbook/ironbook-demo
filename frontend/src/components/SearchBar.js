@@ -125,8 +125,16 @@ export default function PrimarySearchAppBar() {
 			open={isMenuOpen}
 			onClose={handleMenuClose}
 		>
-			<Link to='./profile' style={{ color: '#1F2433', textDecoration: 'none' }}>
+			<Link style={{ color: '#1F2433', textDecoration: 'none' }} to='./profile'>
 				<MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+			</Link>
+			<Link style={{ color: '#1F2433', textDecoration: 'none' }} to='./auth'>
+				<MenuItem
+					style={{ color: '#1F2433', textDecoration: 'none' }}
+					onClick={handleMenuClose}
+				>
+					Sign in
+				</MenuItem>
 			</Link>
 			<MenuItem onClick={handleMenuClose}>Sign Out</MenuItem>
 		</Menu>

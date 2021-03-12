@@ -28,8 +28,7 @@ function AllPosts(props) {
 				<li className='postContainer'>
 					<div className='authorBox'>
 						<img className='profileImg' src={eachpost.profileImg} />
-
-						<h1 className='authorName'>{eachpost.author}</h1>
+						<h1 className='authorName'>{eachpost.author}Jane Doe</h1>
 						{/* <div className='authorLocation'>{eachpost.location}</div> */}
 					</div>
 					<div className='postBox'>{eachpost.description}</div>
@@ -48,6 +47,7 @@ function AllPosts(props) {
 								</form>
 							</div>
 						</div>
+
 						{eachpost.comments.map((comment) => {
 							return <li>{comment}</li>;
 						})}
@@ -59,8 +59,7 @@ function AllPosts(props) {
 
 	return (
 		<>
-			<h3>All Posts</h3>
-			<ul>{showPosts()}</ul>
+			<div className='showPosts'>{showPosts()}</div>
 		</>
 	);
 }
